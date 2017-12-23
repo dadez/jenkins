@@ -26,6 +26,8 @@ node {
 
     stage('read file') {
         def app = readJSON file:'application.json'
+        def version = ${app.versions[0].version}
+        println version
         echo "version: ${app.versions[0].version}"
     }
 
