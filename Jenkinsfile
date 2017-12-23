@@ -27,4 +27,13 @@ node {
         println version
         echo "version: ${app.versions[0].version}"
     }
+
+    stage('wait test') {
+        timeout(1) {
+            def version = app.versions[0].version
+            waitUntil {
+                version == "5.22.0-0"
+            }
+        }
+    }
 }
