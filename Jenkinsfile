@@ -25,15 +25,11 @@ node {
         def app = readJSON file:'application.json'
         def version = app.versions[0].version
         println version
-        echo "version: ${app.versions[0].version}"
-    }
-
-    stage('wait test') {
-        timeout(1) {
-            def version = app.versions[0].version
-            waitUntil {
-                version == "5.22.0-0"
+        // echo "version: ${app.versions[0].version}"
+            timeout(1) {
+                waitUntil {
+                    version == "5.22.0-0"
+                }
             }
-        }
     }
 }
